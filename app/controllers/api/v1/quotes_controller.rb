@@ -20,18 +20,38 @@ class Api::V1::QuotesController < ApplicationController
   #   end
   # end
 
+  # TODO: Refactor
   def index
-    @quotes = nil
+    puts "😊 INDEX"
+    @quotes = []
 
-# scotty is 20
-    if quote_params["said_by"] != nil
-      speaker_id = quote_params["said_by"]
-      @quotes = Quote.where(said_by: speaker_id)
-    else
-      @quotes = Quote.all
+    said_by = quote_params["said_by"]
+    heard_by = quote_params["heard_by"]
+
+    if said_by && heard_by
+      temp_quotes = Quote.where(said_by: said_by)
+      @quotes = []
+      temp_quotes.each do |quote|
+        hearers = quote.hearings.map do |hearing|
+          hearing.user_id
+        end
+        if hearers.include?(heard_by.to_i)
+          @quotes << quote
+        end
+      end
+    elsif said_by
+      @quotes = Quote.where(said_by: said_by)
+    elsif heard_by
+      @quotes = []
+      Quote.all.each do |quote|
+        hearers = quote.hearings.map do |hearing|
+          hearing.user_id
+        end
+        if hearers.include?(heard_by.to_i)
+          @quotes << quote
+        end
+      end
     end
-
-    @quotes
   end
 
   # def edit

@@ -14,6 +14,7 @@
 class User < ActiveRecord::Base
 
   has_many :quotes, inverse_of: :speaker
+  has_many :quotes, inverse_of: :hearers
 
   attr_reader :password
 
