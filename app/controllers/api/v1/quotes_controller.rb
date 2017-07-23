@@ -22,9 +22,6 @@ class Api::V1::QuotesController < ApplicationController
 
   def index
     @quotes = Quote.all
-    # @quotes = Quote.all.includes(:speaker)
-    # render json: @quotes
-    render :index
   end
 
   # def edit
@@ -52,8 +49,8 @@ class Api::V1::QuotesController < ApplicationController
   #   end
   # end
 
-  # private
-  # def quote_params
-  #   params.require(:quote).permit(:body)
-  # end
+  private
+  def quote_params
+    params.require(:quote).permit(:said_by)
+  end
 end
