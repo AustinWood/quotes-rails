@@ -22,12 +22,12 @@ class Api::V1::QuotesController < ApplicationController
 
   def index
     @quotes = nil
+
     if quote_params["said_by"] != nil
       @quotes = Quote.find_by_said_by(quote_params["said_by"])
     else
       @quotes = Quote.all
     end
-
   end
 
   # def edit

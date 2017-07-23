@@ -7,8 +7,10 @@ json.array! @quotes do |quote|
     json.name quote.speaker.name
   end
 
-  json.hearers quote.hearings.map do |hearing|
+  hearers = quote.hearings.map do |hearing|
     hearing.user.name
   end
+
+  json.hearers hearers
 
 end
