@@ -12,6 +12,9 @@
 #
 
 class User < ActiveRecord::Base
+
+  has_many :quotes, inverse_of: :speaker
+
   attr_reader :password
 
   validates :phone_number, :name, :password_digest, :session_token, presence: true

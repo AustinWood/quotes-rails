@@ -10,5 +10,14 @@
 #
 
 class Quote < ActiveRecord::Base
+
+  belongs_to(
+    :speaker,
+    class_name: "User",
+    foreign_key: :said_by,
+    inverse_of: :quotes
+  )
+
   has_many :hearings
+
 end
