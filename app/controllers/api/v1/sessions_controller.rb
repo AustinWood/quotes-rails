@@ -6,7 +6,6 @@ class Api::V1::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      # TODO: redirect_to v1_quotes_url or profile ... ?
       render json: @user
     else
       # TODO: after iOS frontend linked, switch to:
@@ -17,7 +16,6 @@ class Api::V1::SessionsController < ApplicationController
 
   def destroy
     @user = User.find_by_session_token(session_token)
-
     logout if @user
     render json: {status: "logged_out"}
   end

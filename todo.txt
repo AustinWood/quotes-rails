@@ -1,1 +1,4 @@
 http://jaredmorgenstern.com/quotes/
+
+CURRENT LIMITATIONS:
+quotes can only be `heard_by` or `said_by` existing users to the app
