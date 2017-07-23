@@ -16,7 +16,7 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def destroy
-    @user = current_user
+    @user = User.find_by_id(params[:user][:id])
     if @user
       logout
       # TODO: redirect_to new_v1_user_url
