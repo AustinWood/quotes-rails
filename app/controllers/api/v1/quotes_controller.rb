@@ -25,10 +25,24 @@ class Api::V1::QuotesController < ApplicationController
     puts "😊 INDEX"
     @quotes = []
 
+    said_by_or_heard_by = quote_params["said_by_or_heard_by"]
     said_by = quote_params["said_by"]
     heard_by = quote_params["heard_by"]
 
-    if said_by && heard_by
+    if said_by_or_heard_by
+      said_by_quotes = Quote.where(said_by: said_by_or_heard_by)
+      heard_by_quotes = []
+      Quote.all.each do |quote|
+        hearers = quote.hearings.map do |hearing|
+          hearing.user_id
+        end
+        if hearers.include?(said_by_or_heard_by.to_i)
+          heard_by_quotes << quote
+        end
+      end
+      @quotes = said_by_quotes + heard_by_quotes
+
+    elsif said_by && heard_by
       temp_quotes = Quote.where(said_by: said_by)
       @quotes = []
       temp_quotes.each do |quote|
@@ -39,8 +53,10 @@ class Api::V1::QuotesController < ApplicationController
           @quotes << quote
         end
       end
+
     elsif said_by
       @quotes = Quote.where(said_by: said_by)
+
     elsif heard_by
       @quotes = []
       Quote.all.each do |quote|
@@ -52,6 +68,7 @@ class Api::V1::QuotesController < ApplicationController
         end
       end
     end
+
   end
 
   # def edit
@@ -81,6 +98,6 @@ class Api::V1::QuotesController < ApplicationController
 
   private
   def quote_params
-    params.require(:quote).permit(:said_by, :heard_by)
+    params.require(:quote).permit(:said_by, :heard_by, :said_by_or_heard_by)
   end
 end

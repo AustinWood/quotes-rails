@@ -3,6 +3,7 @@ http://jaredmorgenstern.com/quotes/
 http://localhost:3000/v1/quotes?quote%5Bsaid_by%5D=19
 http://localhost:3000/v1/quotes?quote%5Bheard_by%5D=20
 http://localhost:3000/v1/quotes?quote%5Bsaid_by%5D=19&quote%5Bheard_by%5D=20
+http://localhost:3000/v1/quotes?quote%5Bsaid_by_or_heard_by%5D=20
 
 CURRENT LIMITATIONS:
 quotes can only be `heard_by` or `said_by` existing users to the app
