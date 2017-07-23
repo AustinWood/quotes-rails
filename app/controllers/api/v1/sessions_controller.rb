@@ -16,18 +16,9 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by_credentials(
-      params[:user][:phone_number],
-      params[:user][:password])
-      
-    if @user
-      logout
-      # TODO: redirect_to new_v1_user_url
-      render json: {status: "logged_out"}
-    else
-      flash.now[:errors] = @user.errors.full_messagse
-      # TODO: after iOS frontend linked, switch to:
-      # render json: ["No user logged in"], status: 404
-    end
+    @user = User.find_by_session_token(params[:session][:session_token])
+
+    logout if @user
+    render json: {status: "logged_out"}
   end
 end
