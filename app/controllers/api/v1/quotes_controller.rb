@@ -21,8 +21,8 @@ class Api::V1::QuotesController < ApplicationController
   # end
 
   def index
-    @posts = Quote.all.includes(:user)
-    render json: @posts
+    @quotes = Quote.all.includes(:user)
+    render json: @quotes
     # render :index
   end
 
