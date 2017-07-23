@@ -16,7 +16,7 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by_session_token(params[:session][:session_token])
+    @user = User.find_by_session_token(session_token)
 
     logout if @user
     render json: {status: "logged_out"}
