@@ -23,6 +23,7 @@ class Api::V1::QuotesController < ApplicationController
   def index
     @quotes = nil
 
+# scotty is 20
     if quote_params["said_by"] != nil
       speaker_id = quote_params["said_by"]
       @quotes = Quote.where(said_by: speaker_id)
@@ -60,6 +61,6 @@ class Api::V1::QuotesController < ApplicationController
 
   private
   def quote_params
-    params.require(:quote).permit(:said_by)
+    params.require(:quote).permit(:said_by, :heard_by)
   end
 end
