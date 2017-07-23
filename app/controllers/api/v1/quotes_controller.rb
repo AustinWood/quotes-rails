@@ -24,10 +24,13 @@ class Api::V1::QuotesController < ApplicationController
     @quotes = nil
 
     if quote_params["said_by"] != nil
-      @quotes = Quote.find_by_said_by(quote_params["said_by"])
+      speaker_id = quote_params["said_by"]
+      @quotes = Quote.where(said_by: speaker_id)
     else
       @quotes = Quote.all
     end
+
+    @quotes
   end
 
   # def edit
