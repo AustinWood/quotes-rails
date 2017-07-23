@@ -8,5 +8,5 @@
 #
 
 class Hearing < ActiveRecord::Base
-
+  belongs_to :quote
 end

@@ -10,5 +10,5 @@
 #
 
 class Quote < ActiveRecord::Base
-
+  has_many :hearings
 end
