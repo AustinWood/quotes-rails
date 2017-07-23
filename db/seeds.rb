@@ -1,5 +1,6 @@
 User.destroy_all
 Quote.destroy_all
+Hearing.destroy_all
 
 ##################
 ### TOS
