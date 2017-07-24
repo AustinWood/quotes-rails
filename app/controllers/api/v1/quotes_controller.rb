@@ -21,6 +21,8 @@ class Api::V1::QuotesController < ApplicationController
   # end
 
   # TODO: Refactor
+  # Instead of `said_by_or_heard_by`,
+  # check `said_by == heard_by`
   def index
     puts "😊 INDEX"
     @quotes = []
