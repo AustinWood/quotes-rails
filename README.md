@@ -1,24 +1,9 @@
-# README
+# Quotes - Rails app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the backend companion to the iOS Quotes app:
 
-Things you may want to cover:
+https://github.com/AustinWood/quotes-ios
 
-* Ruby version
+The app is currently running on Heroku:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://quotes-ios.herokuapp.com
